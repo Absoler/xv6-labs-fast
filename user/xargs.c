@@ -41,9 +41,9 @@ int main(int argc, char *argv [])
                     wait(&status);
                 } else {
                     // for (int i = 0; args[i] != 0; i++) {
-                    //     printf(" %s", args[i]);
+                    //     printf("# %s", args[i]);
                     // }
-                    printf("\n");
+                    // printf("\n");
                     exec(args[0], args);
                     exit(0);
                 }

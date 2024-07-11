@@ -20,10 +20,12 @@ main (int argc, char *argv [])
         int p;
         if (fork()) {
             // parent
+            int status;
             printf("prime %d\n", buffer[1]);
             // for (int i = 0; i < cnt; i++) { printf(" %d", buffer[i+1]);}
             // printf("\n");
             write(f_p[1], buffer, (cnt + 1) * sizeof(int));
+            wait(&status);
             read(c_p[0], (void *)&buffer, sizeof(int));
             cnt = buffer[0];
             if (cnt > 0) {
