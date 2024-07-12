@@ -1,0 +1,6 @@
+usertrap
+7; the number of `exec` system call
+kernel mode
+80002050:	00002683          	lw	a3,0(zero) # 0 <_entry-0x80000000>  ; a3
+0 is not in kernel address space
+pid = 1, p->name = initcode
