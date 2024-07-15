@@ -1,0 +1,1 @@
+it contains the permission bits and the physical address of the page

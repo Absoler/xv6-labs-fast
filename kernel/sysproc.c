@@ -75,6 +75,24 @@ int
 sys_pgaccess(void)
 {
   // lab pgtbl: your code here.
+  uint64 va;
+  uint64 bufva;
+  int num;
+  struct proc *p = myproc();
+  argaddr(0, &va);
+  argint(1, &num);
+  argaddr(2, &bufva);
+  
+  memset(p->pglog, 0, PGSIZE);
+  for(int i = 0; i < num; i++){
+    pte_t *pte = walk(p->pagetable, va + i * PGSIZE, 0);
+    if((*pte) & PTE_A){
+      ((uint8*)p->pglog)[i/8] |= (1<<(i%8));
+      *pte &= ~PTE_A;
+    }
+  }
+  copyout(p->pagetable, bufva, p->pglog, num/8 + 1);
+
   return 0;
 }
 #endif
